@@ -1,0 +1,285 @@
+databaseChangeLog:
+  - changeSet:
+      id: fk_answer_options_question_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: answer_options
+            baseColumnNames: question_id
+            referencedTableName: questions
+            referencedColumnNames: id
+            constraintName: fk_answer_options_question_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: answer_options
+            constraintName: fk_answer_options_question_id
+
+  - changeSet:
+      id: fk_assignments_lesson_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: assignments
+            baseColumnNames: lesson_id
+            referencedTableName: lessons
+            referencedColumnNames: id
+            constraintName: fk_assignments_lesson_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: assignments
+            constraintName: fk_assignments_lesson_id
+
+  - changeSet:
+      id: fk_course_reviews_course_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: course_reviews
+            baseColumnNames: course_id
+            referencedTableName: courses
+            referencedColumnNames: id
+            constraintName: fk_course_reviews_course_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: course_reviews
+            constraintName: fk_course_reviews_course_id
+
+  - changeSet:
+      id: fk_course_reviews_student_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: course_reviews
+            baseColumnNames: student_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_course_reviews_student_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: course_reviews
+            constraintName: fk_course_reviews_student_id
+
+  - changeSet:
+      id: fk_course_tag_tag_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: course_tag
+            baseColumnNames: tag_id
+            referencedTableName: tags
+            referencedColumnNames: id
+            constraintName: fk_course_tag_tag_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: course_tag
+            constraintName: fk_course_tag_tag_id
+
+  - changeSet:
+      id: fk_course_tag_course_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: course_tag
+            baseColumnNames: course_id
+            referencedTableName: courses
+            referencedColumnNames: id
+            constraintName: fk_course_tag_course_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: course_tag
+            constraintName: fk_course_tag_course_id
+
+  - changeSet:
+      id: fk_courses_category_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: courses
+            baseColumnNames: category_id
+            referencedTableName: categories
+            referencedColumnNames: id
+            constraintName: fk_courses_category_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: courses
+            constraintName: fk_courses_category_id
+
+  - changeSet:
+      id: fk_courses_teacher_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: courses
+            baseColumnNames: teacher_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_courses_teacher_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: courses
+            constraintName: fk_courses_teacher_id
+
+  - changeSet:
+      id: fk_enrollments_course_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: enrollments
+            baseColumnNames: course_id
+            referencedTableName: courses
+            referencedColumnNames: id
+            constraintName: fk_enrollments_course_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: enrollments
+            constraintName: fk_enrollments_course_id
+
+  - changeSet:
+      id: fk_enrollments_user_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: enrollments
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_enrollments_user_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: enrollments
+            constraintName: fk_enrollments_user_id
+
+  - changeSet:
+      id: fk_lessons_module_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: lessons
+            baseColumnNames: module_id
+            referencedTableName: modules
+            referencedColumnNames: id
+            constraintName: fk_lessons_module_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: lessons
+            constraintName: fk_lessons_module_id
+
+  - changeSet:
+      id: fk_modules_course_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: modules
+            baseColumnNames: course_id
+            referencedTableName: courses
+            referencedColumnNames: id
+            constraintName: fk_modules_course_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: modules
+            constraintName: fk_modules_course_id
+
+  - changeSet:
+      id: fk_profiles_user_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: profiles
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_profiles_user_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: profiles
+            constraintName: fk_profiles_user_id
+
+  - changeSet:
+      id: fk_questions_quiz_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: questions
+            baseColumnNames: quiz_id
+            referencedTableName: quizzes
+            referencedColumnNames: id
+            constraintName: fk_questions_quiz_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: questions
+            constraintName: fk_questions_quiz_id
+
+  - changeSet:
+      id: fk_quiz_submissions_quiz_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: quiz_submissions
+            baseColumnNames: quiz_id
+            referencedTableName: quizzes
+            referencedColumnNames: id
+            constraintName: fk_quiz_submissions_quiz_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: quiz_submissions
+            constraintName: fk_quiz_submissions_quiz_id
+
+  - changeSet:
+      id: fk_quiz_submissions_student_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: quiz_submissions
+            baseColumnNames: student_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_quiz_submissions_student_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: quiz_submissions
+            constraintName: fk_quiz_submissions_student_id
+
+  - changeSet:
+      id: fk_quizzes_module_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: quizzes
+            baseColumnNames: module_id
+            referencedTableName: modules
+            referencedColumnNames: id
+            constraintName: fk_quizzes_module_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: quizzes
+            constraintName: fk_quizzes_module_id
+
+  - changeSet:
+      id: fk_submissions_assignment_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: submissions
+            baseColumnNames: assignment_id
+            referencedTableName: assignments
+            referencedColumnNames: id
+            constraintName: fk_submissions_assignment_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: submissions
+            constraintName: fk_submissions_assignment_id
+
+  - changeSet:
+      id: fk_submissions_student_id
+      author: kdd
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: submissions
+            baseColumnNames: student_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_submissions_student_id
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: submissions
+            constraintName: fk_submissions_student_id

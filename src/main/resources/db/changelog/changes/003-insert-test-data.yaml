@@ -1,0 +1,383 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_sample_categories
+      author: kdd
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: "Category 1"
+      rollback:
+        - delete:
+            tableName: categories
+            where: "name = 'Category 1'"
+
+  - changeSet:
+      id: insert_sample_users
+      author: kdd
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "teacher@example.com"
+              - column:
+                  name: name
+                  value: "Teacher User"
+              - column:
+                  name: role
+                  value: "TEACHER"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "student@example.com"
+              - column:
+                  name: name
+                  value: "Student User"
+              - column:
+                  name: role
+                  value: "STUDENT"
+      rollback:
+        - delete:
+            tableName: users
+            where: "email IN ('teacher@example.com', 'student@example.com')"
+
+  - changeSet:
+      id: insert_sample_courses
+      author: kdd
+      changes:
+        - insert:
+            tableName: courses
+            columns:
+              - column:
+                  name: description
+                  value: "Course description"
+              - column:
+                  name: duration
+                  valueNumeric: 30
+              - column:
+                  name: start_date
+                  valueDate: 2025-11-01
+              - column:
+                  name: title
+                  value: "Course 1"
+              - column:
+                  name: category_id
+                  valueNumeric: 1
+              - column:
+                  name: teacher_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: courses
+            where: "title = 'Course 1'"
+
+  - changeSet:
+      id: insert_sample_modules
+      author: kdd
+      changes:
+        - insert:
+            tableName: modules
+            columns:
+              - column:
+                  name: order_index
+                  valueNumeric: 1
+              - column:
+                  name: title
+                  value: "Module 1"
+              - column:
+                  name: course_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: modules
+            where: "title = 'Module 1'"
+
+  - changeSet:
+      id: insert_sample_lessons
+      author: kdd
+      changes:
+        - insert:
+            tableName: lessons
+            columns:
+              - column:
+                  name: content
+                  value: "Lesson content"
+              - column:
+                  name: title
+                  value: "Lesson 1"
+              - column:
+                  name: module_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: lessons
+            where: "title = 'Lesson 1'"
+
+  - changeSet:
+      id: insert_sample_quizzes
+      author: kdd
+      changes:
+        - insert:
+            tableName: quizzes
+            columns:
+              - column:
+                  name: time_limit
+                  valueNumeric: 60
+              - column:
+                  name: title
+                  value: "Quiz 1"
+              - column:
+                  name: module_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: quizzes
+            where: "title = 'Quiz 1'"
+
+  - changeSet:
+      id: insert_sample_questions
+      author: kdd
+      changes:
+        - insert:
+            tableName: questions
+            columns:
+              - column:
+                  name: text
+                  value: "Question text"
+              - column:
+                  name: type
+                  value: "SINGLE_CHOICE"
+              - column:
+                  name: quiz_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: questions
+            where: "text = 'Question text'"
+
+  - changeSet:
+      id: insert_sample_answer_options
+      author: kdd
+      changes:
+        - insert:
+            tableName: answer_options
+            columns:
+              - column:
+                  name: is_correct
+                  valueBoolean: true
+              - column:
+                  name: text
+                  value: "Option 1"
+              - column:
+                  name: question_id
+                  valueNumeric: 1
+        - insert:
+            tableName: answer_options
+            columns:
+              - column:
+                  name: is_correct
+                  valueBoolean: false
+              - column:
+                  name: text
+                  value: "Option 2"
+              - column:
+                  name: question_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: answer_options
+            where: "text IN ('Option 1', 'Option 2')"
+
+  - changeSet:
+      id: insert_sample_assignments
+      author: kdd
+      changes:
+        - insert:
+            tableName: assignments
+            columns:
+              - column:
+                  name: description
+                  value: "First assignment description"
+              - column:
+                  name: due_date
+                  valueDate: 2025-12-31
+              - column:
+                  name: max_score
+                  valueNumeric: 100
+              - column:
+                  name: title
+                  value: "Assignment 1"
+              - column:
+                  name: lesson_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: assignments
+            where: "title = 'Assignment 1'"
+
+  - changeSet:
+      id: insert_sample_submissions
+      author: kdd
+      changes:
+        - insert:
+            tableName: submissions
+            columns:
+              - column:
+                  name: content
+                  value: "My submission"
+              - column:
+                  name: feedback
+                  value: "Good job"
+              - column:
+                  name: score
+                  valueNumeric: 95
+              - column:
+                  name: submitted_at
+                  valueDate: 2025-11-15T12:00:00
+              - column:
+                  name: assignment_id
+                  valueNumeric: 1
+              - column:
+                  name: student_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: submissions
+            where: "content = 'My submission'"
+
+  - changeSet:
+      id: insert_sample_quiz_submissions
+      author: kdd
+      changes:
+        - insert:
+            tableName: quiz_submissions
+            columns:
+              - column:
+                  name: score
+                  valueNumeric: 85
+              - column:
+                  name: taken_at
+                  valueDate: 2025-11-15T13:00:00
+              - column:
+                  name: quiz_id
+                  valueNumeric: 1
+              - column:
+                  name: student_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: quiz_submissions
+            where: "score = 85 AND taken_at = '2025-11-15 13:00:00'"
+
+  - changeSet:
+      id: insert_sample_tags
+      author: kdd
+      changes:
+        - insert:
+            tableName: tags
+            columns:
+              - column:
+                  name: name
+                  value: "Tag1"
+      rollback:
+        - delete:
+            tableName: tags
+            where: "name = 'Tag1'"
+
+  - changeSet:
+      id: insert_sample_course_tag
+      author: kdd
+      changes:
+        - insert:
+            tableName: course_tag
+            columns:
+              - column:
+                  name: course_id
+                  valueNumeric: 1
+              - column:
+                  name: tag_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: course_tag
+            where: "course_id = 1 AND tag_id = 1"
+
+  - changeSet:
+      id: insert_sample_enrollments
+      author: kdd
+      changes:
+        - insert:
+            tableName: enrollments
+            columns:
+              - column:
+                  name: enroll_date
+                  valueDate: 2025-11-01T09:00:00
+              - column:
+                  name: status
+                  value: "ACTIVE"
+              - column:
+                  name: course_id
+                  valueNumeric: 1
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: enrollments
+            where: "enroll_date = '2025-11-01 09:00:00' AND status = 'ACTIVE'"
+
+  - changeSet:
+      id: insert_sample_profiles
+      author: kdd
+      changes:
+        - insert:
+            tableName: profiles
+            columns:
+              - column:
+                  name: avatar_url
+                  value: "http://example.com/avatar1.png"
+              - column:
+                  name: bio
+                  value: "Profile bio"
+              - column:
+                  name: contact_info
+                  value: "contact@example.com"
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: profiles
+            where: "avatar_url = 'http://example.com/avatar1.png' AND bio = 'Profile bio'"
+  - changeSet:
+      id: insert_sample_course_reviews
+      author: kdd
+      changes:
+        - insert:
+            tableName: course_reviews
+            columns:
+              - column:
+                  name: comment
+                  value: "Отличный курс"
+              - column:
+                  name: created_at
+                  valueDate: 2025-11-01T09:00:00
+              - column:
+                  name: rating
+                  valueNumeric: 5
+              - column:
+                  name: course_id
+                  valueNumeric: 1
+              - column:
+                  name: student_id
+                  valueNumeric: 2
+      rollback:
+        - delete:
+            tableName: course_reviews
+            where: "comment = 'Отличный курс'"

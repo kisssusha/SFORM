@@ -1,0 +1,541 @@
+databaseChangeLog:
+  - changeSet:
+      id: answer_options-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: answer_options
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: is_correct
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: text
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: answer_options
+
+  - changeSet:
+      id: assignments-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: assignments
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: due_date
+                  type: date
+              - column:
+                  name: max_score
+                  type: integer
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lesson_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: assignments
+
+  - changeSet:
+      id: categories-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: categories
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: categories
+
+  - changeSet:
+      id: course_reviews-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: course_reviews
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: comment
+                  type: text
+              - column:
+                  name: created_at
+                  type: timestamp(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: course_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: course_reviews
+
+  - changeSet:
+      id: course_tag-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: course_tag
+            schemaName: public
+            columns:
+              - column:
+                  name: course_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tag_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: course_tag
+
+  - changeSet:
+      id: courses-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: courses
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: duration
+                  type: integer
+              - column:
+                  name: start_date
+                  type: date
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+              - column:
+                  name: teacher_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: courses
+
+  - changeSet:
+      id: enrollments-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: enrollments
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: enroll_date
+                  type: timestamp(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: course_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: enrollments
+
+  - changeSet:
+      id: lessons-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: lessons
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: content
+                  type: text
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: module_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: lessons
+
+  - changeSet:
+      id: modules-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: modules
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: order_index
+                  type: integer
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: course_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: modules
+
+  - changeSet:
+      id: profiles-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: profiles
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: avatar_url
+                  type: varchar(255)
+              - column:
+                  name: bio
+                  type: text
+              - column:
+                  name: contact_info
+                  type: varchar(255)
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: profiles
+
+  - changeSet:
+      id: questions-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: questions
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: text
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quiz_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: questions
+
+  - changeSet:
+      id: quiz_submissions-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: quiz_submissions
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: score
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: taken_at
+                  type: timestamp(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quiz_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: quiz_submissions
+
+  - changeSet:
+      id: quizzes-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: quizzes
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: time_limit
+                  type: integer
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: module_id
+                  type: bigint
+      rollback:
+        - dropTable:
+            tableName: quizzes
+
+  - changeSet:
+      id: submissions-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: submissions
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: content
+                  type: text
+              - column:
+                  name: feedback
+                  type: text
+              - column:
+                  name: score
+                  type: integer
+              - column:
+                  name: submitted_at
+                  type: timestamp(6)
+              - column:
+                  name: assignment_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: submissions
+
+  - changeSet:
+      id: tags-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: tags
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: tags
+
+  - changeSet:
+      id: users-create
+      author: kdd
+      changes:
+        - createTable:
+            tableName: users
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: users

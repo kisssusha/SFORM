@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=sf_orm
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:17.5
+    container_name: postgres
+    environment:
+      POSTGRES_DB: sf_orm
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
