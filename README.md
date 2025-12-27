@@ -38,7 +38,8 @@ DB_PASSWORD=postgres
 ## Разворачивание с Docker
 
 ```bash
-cd orm-proj
+git clone https://github.com/kisssusha/SFORM.git
+cd SFORM
 ./gradlew build -x test
 docker-compose up -d
 ```
